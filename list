@@ -1,0 +1,8 @@
+pdp11-aout
+i386-elf
+m68k-unknown-linux-gnu
+sparc-unknown-linux-gnu
+sparc64-unknown-linux-gnu
+aarch64-unknown-elf
+riscv64-unknown-linux-gnu
+riscv32-unknown-elf

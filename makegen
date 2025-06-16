@@ -1,0 +1,26 @@
+#!/usr/bin/perl -w
+
+# makegen : a makefile generator to automate builds for a list of targets
+#
+# Copyright (c) 2025 Charles Suresh <romforth@proton.me>
+# SPDX-License-Identifier: AGPL-3.0-only
+# Please see the LICENSE file for the Affero GPL 3.0 license details
+
+use strict;
+
+my $gen="makefile.gen";
+open(my $fh,">$gen") or die "can't open $gen for writing";
+select $fh;
+print "all : build\n";
+my @acc=();
+while (<>) {
+	chomp;
+	push @acc, "../build/$_";
+	print "../build/$_ :\n";
+	print "\tcd ../binutils ; ";
+	print "mkdir -p \$\@ ; ";
+	print "cd \$\@ ; ";
+	print "../../binutils/configure --target=$_ --prefix \${PWD} --disable-gdb --disable-sim ; make ; make install\n";
+}
+print "build : ", join(' ', @acc), "\n";
+close $fh;
