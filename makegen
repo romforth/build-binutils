@@ -20,7 +20,7 @@ while (<>) {
 	print "\tcd ../binutils ; ";
 	print "mkdir -p \$\@ ; ";
 	print "cd \$\@ ; ";
-	print "../../binutils/configure --target=$_ --prefix \${PWD} --disable-gdb --disable-sim ; make ; make install\n";
+	print "../../binutils/configure --target=$_ --prefix \${PWD} --disable-nls --enable-gprofng=no --disable-gdb --disable-sim ; make ; make install\n";
 }
 print "build : ", join(' ', @acc), "\n";
 close $fh;
